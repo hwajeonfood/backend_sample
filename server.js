@@ -30,7 +30,7 @@ app.get('', (req,res) => {
 app.get('/logintest', function (req, res){  
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.write('<h3>Login</h3>');
-    res.write('<form method="POST" action="/login">');
+    res.write('<form method="POST" action="/logintest">');
     res.write('<label name="userId">UserId : </label>')
     res.write('<input type="text" name="userId"><br/>');
     res.write('<label name="password">Password : </label>')
