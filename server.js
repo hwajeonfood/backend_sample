@@ -28,11 +28,17 @@ app.set('trust proxy', 1)
 app.use(session({ //session cookie config
     key:'sid',
     secret: 'hwajeon',
-    name: 'sessionid',
+    name: 'wsprjH',
     //store: sessionStore,
     proxy: true,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie:{
+        secure: true,
+        httpsOnly: true,
+        domain: 'ec2-18-191-102-13.us-east-2.compute.amazonaws.com',
+        expires: 1000*60*60
+    }
 }));
 
 //express route config section
@@ -66,7 +72,7 @@ app.get('/logintest', function (req, res){
 })
 app.post('/logintest', function (req, res){  
     var userId = req.param("userId");
-    var password = req.param("password")
+    var password = req.param("password");
 
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.write('Thank you, '+userId+', you are now logged in.');
