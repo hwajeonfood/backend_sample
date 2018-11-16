@@ -1,0 +1,5 @@
+auth:ju6579
+email:ju6579@naver.com
+
+kau web sw studio project
+server side repository
