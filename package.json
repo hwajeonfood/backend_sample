@@ -1,0 +1,27 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "web SW studio server",
+  "main": "server.js",
+  "scripts": {
+    "test": "web",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ju6579/webSW_server.git"
+  },
+  "keywords": [
+    "web",
+    "studio"
+  ],
+  "author": "ju6579",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ju6579/webSW_server/issues"
+  },
+  "homepage": "https://github.com/ju6579/webSW_server#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
