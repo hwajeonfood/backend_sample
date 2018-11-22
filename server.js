@@ -98,7 +98,7 @@ https.createServer(option,app).listen(port2, function(){
     // mysql test command
 
     connection.connect();
-    connection.query('SELECT * from Persons', function(err, rows, fields) {
+    connection.query('SELECT * from persons', function(err, rows, fields) {
     if (!err)
       console.log('The solution is: ', rows);
     else
