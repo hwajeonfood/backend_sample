@@ -1,33 +1,34 @@
 //routing, secure package
-var express = require('express');
-var helmet = require('helmet');
-var session = require('express-session');
+const express = require('express');
+const helmet = require('helmet');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
 
 //node basic package
-var path = require('path');
-var http = require('http');
-var https = require('https');
-var fs = require('fs');
+const path = require('path');
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
 
 //ssl key path
-var option = {
+const option = {
     key: fs.readFileSync('../key/key.pem'),
     cert: fs.readFileSync('../key/cert.pem')
 }
 
 //test
-var mysql      = require('mysql');
-var dbconfig   = require('../key/dbconfig.js');
-var connection = mysql.createConnection(dbconfig);
+const mysql      = require('mysql');
+const dbconfig   = require('../key/dbconfig.js');
+const connection = mysql.createConnection(dbconfig);
 //
 
 
 //using port number
-var port1 = 80;  //http
-var port2 = 443; //https
+const port1 = 80;  //http
+const port2 = 443; //https
 
 //express secure config section
-var app = express();
+const app = express();
 app.use(helmet());
 app.use(helmet.noCache());
 app.disable('x-powered-by');
@@ -37,7 +38,7 @@ app.use(session({ //session cookie config
     key:'sid',
     secret: 'hwajeon',
     name: 'sessionID',
-    //store: sessionStore,
+    store: new FileStore(),
     proxy: true,
     resave: true,
     saveUninitialized: true,
@@ -96,7 +97,7 @@ http.createServer(app).listen(port1, function(){
 https.createServer(option,app).listen(port2, function(){
     console.log("Https is running at 443 port");
     // mysql test command
-
+    /*
     connection.connect();
     connection.query('SELECT * from persons', function(err, rows, fields) {
     if (!err)
@@ -105,5 +106,5 @@ https.createServer(option,app).listen(port2, function(){
       console.log('Error while performing Query.', err);
     });
     connection.end();
-    //*/
+    */
 }) //https : option -> ssl key data
