@@ -15,6 +15,13 @@ var option = {
     cert: fs.readFileSync('../key/cert.pem')
 }
 
+//test
+var mysql      = require('mysql');
+var dbconfig   = require('../key/dbconfig.js');
+var connection = mysql.createConnection(dbconfig);
+//
+
+
 //using port number
 var port1 = 80;  //http
 var port2 = 443; //https
@@ -22,13 +29,14 @@ var port2 = 443; //https
 //express secure config section
 var app = express();
 app.use(helmet());
+app.use(helmet.noCache());
 app.disable('x-powered-by');
 app.use(express.urlencoded({extended: true}));
 app.set('trust proxy', 1)
 app.use(session({ //session cookie config
     key:'sid',
     secret: 'hwajeon',
-    name: 'wsprjH',
+    name: 'sessionID',
     //store: sessionStore,
     proxy: true,
     resave: true,
@@ -87,4 +95,15 @@ http.createServer(app).listen(port1, function(){
 }) //http
 https.createServer(option,app).listen(port2, function(){
     console.log("Https is running at 443 port");
+    // mysql test command
+
+    connection.connect();
+    connection.query('SELECT * from Persons', function(err, rows, fields) {
+    if (!err)
+      console.log('The solution is: ', rows);
+    else
+      console.log('Error while performing Query.', err);
+    });
+    connection.end();
+    //*/
 }) //https : option -> ssl key data
