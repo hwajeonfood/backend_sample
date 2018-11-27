@@ -16,12 +16,10 @@ const option = {
     cert: fs.readFileSync('../key/cert.pem')
 }
 
-//test
+//sql connect module
 const mysql      = require('mysql');
 const dbconfig   = require('../key/dbconfig.js');
 const connection = mysql.createConnection(dbconfig);
-//
-
 
 //using port number
 const port1 = 80;  //http
